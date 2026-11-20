@@ -31,7 +31,8 @@ an unambiguous yes/no within a couple of seconds.
 - Browse mode when the search box is empty: cover grid, format filter
   chips, sort.
 - Tap a movie for details: large cover, title, director, rating, formats,
-  description, and an Amazon link when an ASIN exists.
+  description, and a "Find on Blu-ray.com" search link (title with release
+  notes like "(4K UHD)" stripped).
 - Collection data extracted into a standalone, human-readable `movies.json`
   — the new source of truth, independent of Delicious Library.
 - Self-contained: covers copied locally; no runtime dependency on
@@ -128,8 +129,9 @@ scripts/extract.py  # one-time importer from the old site
   sort also apply while searching.
 - **Details:** tapping an item opens a native `<dialog>` (bottom sheet on
   phones, centered on desktop): cover, title, director, rating, formats,
-  description; "View on Amazon" → `https://www.amazon.com/dp/<ASIN>` only
-  when ASIN exists. Closes via button, backdrop tap, or Escape/back.
+  description; "Find on Blu-ray.com" → blu-ray.com quick search for the
+  cleaned title (`links.js`). Replaced the original Amazon link on 2026-11-19
+  at the owner's request. Closes via button, backdrop tap, or Escape/back.
 - **Performance:** covers use `loading="lazy"` with explicit width/height
   to avoid layout shift.
 - **Look:** clean, modern, light and dark mode via `prefers-color-scheme`;

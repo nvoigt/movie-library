@@ -1,5 +1,7 @@
 // Details sheet for a single movie, shown in the native <dialog id="details">.
 
+import { blurayUrl } from "./links.js";
+
 const dialog = document.getElementById("details");
 const body = dialog.querySelector(".details-body");
 
@@ -36,12 +38,8 @@ export function openDetails(movie) {
         : null,
       el("p", { class: "details-owned" }, "✓ In your library")),
     movie.description ? el("p", { class: "details-description" }, movie.description) : null,
-    movie.asin
-      ? el("a", {
-        class: "details-amazon", href: `https://www.amazon.com/dp/${encodeURIComponent(movie.asin)}`,
-        target: "_blank", rel: "noopener",
-      }, "View on Amazon")
-      : null,
+    el("a", { class: "details-link", href: blurayUrl(movie), target: "_blank", rel: "noopener" },
+      "Find on Blu-ray.com"),
   ].filter(Boolean));
 
   if (!dialog.open) {

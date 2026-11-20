@@ -10,7 +10,7 @@ const scenarios = [
   { q: "bugs bunny superstar", click: ".movie" },     // sparse entry: no desc, no ASIN
   { q: "star", chip: "DVD" },                         // DVD matches + also owned in other formats
   { q: "k pax", chip: "DVD" },                        // unknown format
-  { q: "santa claus comin", click: ".movie" },        // entry with ASIN → Amazon link
+  { q: "ghost protocol 4k", click: ".movie" },        // Blu-ray.com link with a cleaned title
 ];
 for (const s of scenarios) {
   const f = document.createElement("iframe");

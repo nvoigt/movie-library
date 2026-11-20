@@ -174,7 +174,7 @@ dialog#details::backdrop { background: rgb(0 0 0 / 0.5); }
 .details-meta { margin: 0 0 8px; color: var(--muted); font-size: 0.9rem; }
 .details-owned { margin: 10px 0 0; color: var(--yes); font-weight: 600; }
 .details-description { grid-column: 1 / -1; margin: 0; line-height: 1.5; }
-.details-amazon {
+.details-link {
   grid-column: 1 / -1; justify-self: start;
   display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px;
   border-radius: 999px; background: var(--accent); color: var(--accent-text);
