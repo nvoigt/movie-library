@@ -1,0 +1,27 @@
+<!doctype html>
+<!-- Visual check harness: serve the project root, open /tests/visual.html, screenshot.
+     Each iframe runs one scenario at phone width (375×812). -->
+<html><head><meta charset="utf-8"><title>Visual checks</title>
+<style>body{margin:0;display:flex;gap:10px;background:#888}iframe{border:0;background:#fff}</style></head>
+<body>
+<script>
+const scenarios = [
+  { q: "reckoning pt1", click: ".movie" },            // fully populated entry
+  { q: "bugs bunny superstar", click: ".movie" },     // sparse entry: no desc, no ASIN
+  { q: "star", chip: "DVD" },                         // DVD matches + also owned in other formats
+  { q: "k pax", chip: "DVD" },                        // unknown format
+  { q: "santa claus comin", click: ".movie" },        // entry with ASIN → Amazon link
+];
+for (const s of scenarios) {
+  const f = document.createElement("iframe");
+  f.width = 375; f.height = 812;
+  f.src = "../index.html?q=" + encodeURIComponent(s.q);
+  f.onload = () => setTimeout(() => {
+    const d = f.contentDocument;
+    if (s.chip) d.querySelector(`.chip[data-format="${s.chip}"]`).click();
+    if (s.click) d.querySelector(s.click).click();
+  }, 800);
+  document.body.append(f);
+}
+</script>
+</body></html>

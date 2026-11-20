@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Movie Library</title>
+  <meta name="theme-color" content="#f6f4f0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#16161a" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <meta name="apple-mobile-web-app-title" content="Movies">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="top">
+    <div class="title-row">
+      <h1>Movie Library</h1>
+      <span id="total" class="total"></span>
+    </div>
+    <label class="search">
+      <span class="visually-hidden">Search your movies</span>
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="search" id="q" placeholder="Do I own…? Type a title or director" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search">
+    </label>
+    <div class="controls">
+      <div class="chips" role="group" aria-label="Format">
+        <button type="button" class="chip" data-format="All" aria-pressed="true">All</button>
+        <button type="button" class="chip" data-format="Blu-ray" aria-pressed="false">Blu-ray</button>
+        <button type="button" class="chip" data-format="DVD" aria-pressed="false">DVD</button>
+        <button type="button" class="chip" data-format="4K UHD" aria-pressed="false">4K UHD</button>
+      </div>
+      <label class="sort">
+        <span class="visually-hidden">Sort by</span>
+        <select id="sort">
+          <option value="title">Title</option>
+          <option value="director">Director</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <p id="status" class="status" aria-live="polite">Loading…</p>
+  <main id="results"></main>
+
+  <dialog id="details" aria-labelledby="details-title">
+    <button type="button" class="details-close" aria-label="Close">×</button>
+    <div class="details-body"></div>
+  </dialog>
+</body>
+</html>
