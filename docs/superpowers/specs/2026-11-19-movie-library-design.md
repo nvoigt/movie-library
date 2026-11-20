@@ -1,7 +1,7 @@
 # Movie Library — Mobile Rebuild (Prototype) — Design
 
 Date: 2026-11-19
-Status: Draft, awaiting approval
+Status: Approved and built — live at https://nvoigt.github.io/movie-library/
 
 ## Intent and the why
 
@@ -89,7 +89,7 @@ index.html          # the app shell
 styles.css
 app.js
 movies.json         # generated, then hand-editable
-covers/<UUID>.png   # local copies of the 140px covers
+covers/<UUID>.webp  # local WebP copies of the covers (199×280, q80)
 manifest.webmanifest + icon  # "Add to Home Screen"
 scripts/extract.py  # one-time importer from the old site
 ```
@@ -162,8 +162,30 @@ scripts/extract.py  # one-time importer from the old site
 - Exact visual styling, spacing, typography.
 - Parser implementation details (regex vs `html.parser`).
 
+## Changes after approval (2026-11-19)
+
+- **Search precision (final review):** each query word must start a word in
+  the title/director (no mid-word hits); `&` = "and"; adjacent words also
+  match joined ("spiderman" → Spider-Man). A green "✓ in your library" only
+  when every query word matches a whole word; otherwise "possible matches".
+- **Box-set fallback:** with no title/director match, search descriptions of
+  collection-titled entries (whole words) and show "appears in the
+  description of:" (e.g. Skyfall → Bond 5-Film Collection).
+- **Format filter honesty:** matches owned in other formats are always listed
+  ("Also owned in other formats"); unknown formats say "format unknown".
+- **Load safety:** no search results until movies.json has loaded.
+- **Covers:** WebP instead of PNG (83 MB → 9.7 MB); importer writes WebP via
+  `cwebp`.
+- **Links:** Amazon replaced by blu-ray.com search (see Page behavior).
+- **Hosting:** GitHub Pages from public repo `nvoigt/movie-library`, `main`
+  branch root; every push to `main` redeploys.
+
 ## Future (out of scope)
 
 - A way for the owner to add movies without editing JSON (e.g. move data
   to a Google Sheet — approach C).
-- Hosting/sharing the prototype with family.
+- Known small issues (deferred): sort menu partly covers the "4K UHD" chip
+  at 375px; details layout when a cover fails to load; back-button edge cases
+  (reopen right after closing, reload with sheet open); precompute normalized
+  search text for older phones; DVD-only titles may need blu-ray.com's DVD
+  search section.
